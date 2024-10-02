@@ -1,3 +1,4 @@
+import 'package:chip_source/screens/admin_screen.dart';
 import 'package:chip_source/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -111,6 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       // Implement login logic here
                       Get.snackbar("Login", "Successfully logged in!",
                           snackPosition: SnackPosition.TOP);
+                      Get.to(AdminScreen());
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.brown[600],

@@ -1,3 +1,4 @@
+import 'package:chip_source/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -108,39 +109,41 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(height: 20),
               _buildTextField(controller: provinceController, label: 'Province', icon: Icons.location_on),
 
-              // Role Dropdown with custom width
+              // Role Dropdown with reduced width
               const SizedBox(height: 20),
-              Container(
-                width: 200, // Adjust the width to your preference
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: Colors.brown[400]!),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                    isExpanded: true,
-                    value: selectedRole,
-                    hint: Text(
-                      'Select Role',
-                      style: TextStyle(color: Colors.brown[400]),
+              Align(
+                alignment: Alignment.centerLeft, // Align dropdown to the left side
+                child: Container(
+                  width: 400, // Set dropdown width smaller
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.brown[400]!),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      isExpanded: true,
+                      value: selectedRole,
+                      hint: Text(
+                        'Select Role',
+                        style: TextStyle(color: Colors.brown[400]),
+                      ),
+                      icon: Icon(Icons.arrow_drop_down, color: Colors.brown[400]),
+                      items: roles.map((String role) {
+                        return DropdownMenuItem<String>(
+                          value: role,
+                          child: Text(
+                            role,
+                            style: TextStyle(color: Colors.brown[800]),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          selectedRole = newValue;
+                        });
+                      },
                     ),
-                    icon: Icon(Icons.arrow_drop_down, color: Colors.brown[400]),
-                    items: roles.map((String role) {
-                      return DropdownMenuItem<String>(
-                        value: role,
-                        child: Text(
-                          role,
-                          style: TextStyle(color: Colors.brown[800]),
-                        ),
-                      );
-                    }).toList(),
-                    onChanged: (newValue) {
-                      setState(() {
-                        selectedRole = newValue;
-                      });
-                    },
                   ),
                 ),
               ),
@@ -181,7 +184,9 @@ class _SignupScreenState extends State<SignupScreen> {
                   onPressed: () {
                     // Implement signup logic here
                     Get.snackbar("Signup", "Account created successfully!",
-                        snackPosition: SnackPosition.BOTTOM);
+                        icon: Icon(Icons.done,color: Colors.green,),
+                        snackPosition: SnackPosition.TOP,);
+                    Get.to(LoginScreen());
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.brown[600],
