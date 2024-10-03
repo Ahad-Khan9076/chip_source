@@ -1,4 +1,5 @@
 import 'package:chip_source/screens/admin_screen.dart';
+import 'package:chip_source/screens/forgot_password_screen.dart';
 import 'package:chip_source/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -92,9 +93,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {
-                      Get.snackbar("Forgot Password", "Password reset link sent to your email.",
-                          snackPosition: SnackPosition.BOTTOM);
-                    },
+                      Get.to(ForgotPasswordScreen());
+                      },
                     child: const Text(
                       'Forgot Password?',
                       style: TextStyle(color: Colors.brown),

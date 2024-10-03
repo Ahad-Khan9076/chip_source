@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
     return Obx(
           () {
         return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Admin Dashboard',
           theme: _themeController.theme,
           home: const SplashScreen(),
